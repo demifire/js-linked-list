@@ -1,12 +1,6 @@
-/**
- * @name  linkedListGenerator
- * @description  Main Module
- * @return {Object} an object exposing methods to be used to manipulate a linked list
- */
-function linkedListGenerator(){
-    let head = null;
-    let tail = null;
-    let prev = null;
+
+    var head = null;
+    var tail = null;
   
     function getHead() {
       return head;
@@ -18,19 +12,17 @@ function linkedListGenerator(){
   
     function add(value) {
       let newNode = {
-        value: value,
-        prev: tail,
-        next: null
+        value : value,
+        next : null
       };
   
       if (!head) {      
         head = newNode;
-        prev = null;
         tail = newNode;
   
       } else {
+
         tail.next = newNode;
-        prev = tail;
         tail = newNode;
       }
       return tail;
@@ -79,11 +71,11 @@ function linkedListGenerator(){
       }
     }
   
-    function insert(value, index) {
-      let previousNode = get(index-1);
-      let targetNode = get(index);
-      let newNode = {
-        value : value,
+    function insert(val, index) {
+      var previousNode = get(index-1);
+      var targetNode = get(index);
+      var newNode = {
+        value : val,
         next : null
       };
   
@@ -99,14 +91,64 @@ function linkedListGenerator(){
         previousNode.next = newNode;
       }
     }
-    
-    return {
-      getHead:getHead,
-      getTail:getTail,
-      add:add,
-      get:get,
-      remove:remove,
-      insert:insert,
-    }
-  }
+
+    function hasCycle(head) {
+        let slow = head;
+        let fast = head;
+      
+        if(!head || !head.next) {return false}
+      
+        else if (head.next === head) {return true}
+      
+        else {
+          while(fast.next.next) {
+      
+            slow = slow.next;
+            fast = fast.next.next;
+      
+            if(slow === fast) {return true}
+            }
+        return false;
+      }
+}
   
+console.log('yo')
+
+var myObj3 = {
+    value: 'Sauce',
+    next: myObj
+}
+
+var myObj2 = {
+    value: 'MeatBall',
+    next: myObj3
+}
+
+var myObj = {
+    value: 'Cheese',
+    next: myObj2
+}
+
+var returnFalse = {
+    value: 'sds',
+    next: returnFalse2
+}
+
+var returnFalse2 = {
+    value: 'asdasdasd',
+    next: returnFalse3
+}
+
+var returnFalse3 = {
+    value: 'sdasda',
+    next: returnFalse4
+}
+
+var returnFalse4 = {
+    value: 'asd222',
+    next: null
+}
+
+
+
+console.log(hasCycle(myObj));
